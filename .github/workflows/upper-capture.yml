@@ -16,5 +16,6 @@ jobs:
           cache-dependency-path: ./upper/go.sum
       - run: ls
       - run: go build
+        working-directory: upper
       - run: ls
       - run: go test -v
