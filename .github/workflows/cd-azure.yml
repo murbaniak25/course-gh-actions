@@ -35,6 +35,6 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - uses: azure/webapps-deploy@v3
         with:
-          app-name: murbaniak25-api-test
+          app-name: murbaniak-api-test
           images: murbaniak25/actions-web:latest
           resource-group-name: gh-actions
