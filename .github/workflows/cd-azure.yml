@@ -19,5 +19,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASS }}
-      - run: ./build-push.sh
+      - run: |
+          chmod +x ./build-push.sh
+          chmod +x build-only.sh
+          ./build-push.sh
         working-directory: api
