@@ -34,6 +34,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
           cache: true
+          cache-dependency-path: ./api/api.csproj
       - run: dotnet restore
       - run: dotnet build --no-restore
       # could use artifacts here but the project is too small to justify it
@@ -49,6 +50,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
           cache: true
+          cache-dependency-path: ./api/api.csproj
       - run: dotnet restore
       - run: dotnet build --no-restore
       - run: dotnet test --no-build --no-restore
