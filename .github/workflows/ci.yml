@@ -22,6 +22,7 @@ jobs:
           FILTER_REGEX_INCLUDE: .*api/.*
           VALIDATE_CSHARP: true
           VALIDATE_DOCKERFILE: true
+          VALIDATE_ALL_CODEBASE: false
   build:
     needs: lint
     runs-on: ubuntu-latest
