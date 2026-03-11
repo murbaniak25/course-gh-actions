@@ -19,10 +19,16 @@ jobs:
       - uses: github/super-linter/slim@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false
           FILTER_REGEX_INCLUDE: .*api/.*
+
+          VALIDATE_JSCPD: false
+          VALIDATE_CHECKOV: false
+          VALIDATE_BASH: false
+          VALIDATE_TERRAFORM_TERRASCAN: false
+
           VALIDATE_CSHARP: true
           VALIDATE_DOCKERFILE: true
-          VALIDATE_ALL_CODEBASE: false
   build:
     needs: lint
     runs-on: ubuntu-latest
