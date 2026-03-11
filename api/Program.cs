@@ -28,8 +28,6 @@ app.MapGet("/sensitive", (string? password) =>
     return "Access denied!";
 });
 
-int foo;
-
 var consistentForecasts = Enumerable.Range(1, 5).Select(index =>
     new WeatherForecast
     (
