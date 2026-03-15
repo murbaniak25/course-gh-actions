@@ -66,6 +66,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASS }}
       - run: |
           chmod +x ./build-push.sh
-          chmod +x ./build-only.sh
+          chmod +x build-only.sh
           ./build-push.sh
         working-directory: api
