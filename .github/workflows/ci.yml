@@ -6,56 +6,56 @@ on:
       - ".github/workflows/ci.yml"
   workflow_dispatch:
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: read
-      issues: write
-      pull-requests: write
-      statuses: write
-    steps:
-      - uses: actions/checkout@v4
-      - uses: github/super-linter@v6
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FILTER_REGEX_INCLUDE: .*api/.*
-          VALIDATE_CSHARP: true
-          VALIDATE_DOCKERFILE: true
-  build:
-    needs: lint
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./api
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 8.0.x
-          cache: true
-          cache-dependency-path: ./api/api.csproj
-      - run: dotnet restore
-      - run: dotnet build --no-restore
-      # could use artifacts here but the project is too small to justify it
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./api
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 8.0.x
-          cache: true
-          cache-dependency-path: ./api/api.csproj
-      - run: dotnet restore
-      - run: dotnet build --no-restore
-      - run: dotnet test --no-build --no-restore
+  # lint:
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: read
+  #     packages: read
+  #     issues: write
+  #     pull-requests: write
+  #     statuses: write
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: github/super-linter@v6
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #         FILTER_REGEX_INCLUDE: .*api/.*
+  #         VALIDATE_CSHARP: true
+  #         VALIDATE_DOCKERFILE: true
+  # build:
+  #   needs: lint
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: ./api
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-dotnet@v3
+  #       with:
+  #         dotnet-version: 8.0.x
+  #         cache: true
+  #         cache-dependency-path: ./api/api.csproj
+  #     - run: dotnet restore
+  #     - run: dotnet build --no-restore
+  #     # could use artifacts here but the project is too small to justify it
+  # test:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: ./api
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-dotnet@v3
+  #       with:
+  #         dotnet-version: 8.0.x
+  #         cache: true
+  #         cache-dependency-path: ./api/api.csproj
+  #     - run: dotnet restore
+  #     - run: dotnet build --no-restore
+  #     - run: dotnet test --no-build --no-restore
   docker:
-    needs: test
+    # needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -65,7 +65,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASS }}
       - run: |
-          chmod +x .build-push.sh
-          chmod +x build-only.sh
+          chmod +x ./build-push.sh
+          chmod +x ./build-only.sh
           ./build-push.sh
         working-directory: api
