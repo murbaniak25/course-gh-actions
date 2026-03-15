@@ -1,6 +1,6 @@
 services:
   api:
-    image: murbaniak25/actions-web:latest
+    image: ghcr.io/murbaniak25/course-gh-actions/api:latest
     build:
       context: .
       target: runner
