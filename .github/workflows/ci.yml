@@ -82,4 +82,3 @@ jobs:
           app-name: murbaniak-api-test
           images: ghcr.io/murbaniak25/course-gh-actions/api:latest
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A5A4D7A7A5D745D3B8D7BF57E0CB14F6 }}
-          resource-group-name: gh-actions
