@@ -37,7 +37,6 @@ jobs:
       - uses: azure/webapps-deploy@v3
         id: deploy
         with:
-          ##networking change
           app-name: murbaniak-api-test
           images: murbaniak25/actions-web:latest
           resource-group-name: gh-actions
