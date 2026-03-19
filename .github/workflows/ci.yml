@@ -87,7 +87,7 @@ jobs:
       - name: Smoke test
         run: |
           sleep 10
-          curl -f https://murbaniak-api-test-staging.azurewebsites.net/health || exit 1
+          curl -f https://murbaniak-api-test-d8e0hnekevfjgvg0.polandcentral-01.azurewebsites.net/health || exit 1
 
       - name: Rollback on failure
         if: failure()
